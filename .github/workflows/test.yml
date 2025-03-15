@@ -1,16 +1,19 @@
 name: Second-test
 on: push
 jobs:
-  runs-on: ubuntu-latest
-  steps: 
-    - name: get code
-      use: actions/checkout@v3
-    - name: upload-node
-      use : actions/setup-node@V3
-      with:
-        node-version: 18
-    - run: npm ci
-    - run: npm test
-    - name: RUn test
-      run: npm test
-      
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
